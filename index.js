@@ -1,5 +1,5 @@
 // Main Backend File
-require('dotenv').config()
+require("dotenv").config();
 
 const BookModel = require("./Database/books");
 const AuthorModel = require("./Database/authors");
@@ -11,7 +11,9 @@ app.use(express.json());
 
 var mongoose = require("mongoose");
 var mongoDB = process.env.MONGODB_URI;
-mongoose.connect(mongoDB, { useNewUrlParser: true, useUnifiedTopology: true }).then(() => console.log("CONNECTION ESTABLISHED"));
+mongoose
+  .connect(mongoDB, { useNewUrlParser: true, useUnifiedTopology: true })
+  .then(() => console.log("CONNECTION ESTABLISHED"));
 
 // ----------------Book-------------------
 
@@ -366,7 +368,7 @@ Access           PUBLIC
 Parameter        id/isbn       
 Method           DELETE    
 Link             http://localhost:3000/publication-book-delete/1/12One
-*/ 
+*/
 app.delete("/publication-book-delete/:id/:isbn", async (req, res) => {
   const { id, isbn } = req.params;
   let getSpecificPublication = await PublicationModel.findOne({ id: id });
@@ -387,5 +389,5 @@ app.delete("/publication-book-delete/:id/:isbn", async (req, res) => {
 });
 
 app.listen(3000, () => {
-  console.log("My express app is running on port 3000....");
+  console.log("Server is running....");
 });
